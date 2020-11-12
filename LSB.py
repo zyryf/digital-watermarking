@@ -41,16 +41,6 @@ def create_image(message: str, input_filename, output_filename: str) -> None:
     out_img.close()
     
     
-    
-    
-    
-message = 'a secret message'
-create_image(message, 'original-image.png', 'secret-image.png')
-decoded = decode_image('secret-image.png')
-print(decoded)
-
-
-
 def clear_low_order_bits(pixels) -> None:
     for row in range(pixels.shape[0]):
         for col in range(pixels.shape[1]):
@@ -62,3 +52,8 @@ def decode_image(filename: str) -> str:
     result = ''.join(chars_provider(img.getdata(band=0)))
     img.close()
     return result
+    
+message = 'a secret message'
+create_image(message, 'original-image.png', 'secret-image.png')
+decoded = decode_image('secret-image.png')
+print(decoded)
