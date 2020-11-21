@@ -17,7 +17,7 @@ https://colab.research.google.com/drive/1g0OpWjVsR39Oe9MVTm17Sh3LD8JjpA8c#scroll
 ## Runing the DCT program
     
     1. Open Matlab
-    2. Run the dct_watermarking.m file (images has to be in the same folder)
+    2. Run the dct_watermarking.m file (images have to be in the same folder)
 
 ## Authors
 
