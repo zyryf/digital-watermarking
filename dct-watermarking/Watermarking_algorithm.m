@@ -21,8 +21,8 @@ im = rgb2gray(picture);
 im = imresize(im,[512 512]);
 figure(3); imshow(im); title('Grayscaled, resized picture');
 wat = im2bw(watermark);
-wat = imresize(wat,[32 32]);
-figure(4); imshow(wat); title('Grayscaled, resized watermark');
+wat = imresize(wat,[64 64]);
+figure(4); imshow(wat); title('Binary, resized watermark');
 
 
 %% WTAERMARKING
@@ -87,10 +87,25 @@ figure(5); imshow(embimg); title('Watermarked picture');
 %% PICTURE MODIFICATIONS
 % Put watermarked picture modifiactins there for impact verification
 
-% embimg = imnoise(embimg,'gaussian');
+%embimg = imnoise(embimg,'salt & pepper', 0.1);
+
+% embimg = imnoise(embimg,'gaussian', 0.1);
 
 %embimg = imrotate(embimg,180);
 
+% embimg = imrotate(embimg,90);
+
+% embimg = imrotate(embimg,45);
+ 
+% embimg = imresize(embimg,[1200 1200]);
+
+%embimg = imresize(embimg,[400 400]);
+
+%windowSize = 15;
+%avg3 = ones(windowSize) / windowSize^2;
+%embimg = imfilter(embimg, avg3, 'conv');
+
+embimg = imresize(embimg,[512 512]);
 figure(6); imshow(embimg); title('Watermarked picture after modifications');
 %% DEWATERMARKING
 [row clm]=size(embimg);
@@ -112,9 +127,9 @@ for ii=1:8:row
 end
 nn=x;
 
-wm=[]; wm1=[]; k=1; wmwd=[]; wmwd1=[]
-while(k<1025)
-    for i=1:32
+wm=[]; wm1=[]; k=1; wmwd=[]; wmwd1=[];
+while(k<4097)
+    for i=1:64
         kx=x{k}; 
         dkx=blkproc(kx,[8 8],@dct2); 
         nn{k}=dkx; 
@@ -126,8 +141,8 @@ while(k<1025)
     wmwd=[wmwd;wmwd1]; wmwd1=[];
 end
 
-for i=1:32
-    for j=1:32
+for i=1:64
+    for j=1:64
         diff=wm(i,j); 
         if diff >=0
             wm(i,j)=0;
